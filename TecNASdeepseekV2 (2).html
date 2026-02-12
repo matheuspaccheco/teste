@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnas Solutions | Tecnologia e Infraestrutura para Negócios</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Remix Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --bs-primary: #2D3748;
+            --bs-secondary: #718096;
+            --bs-info: #3182CE;
+            --bs-success: #38A169;
+        }
+        
+        /* Estilos customizados */
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: var(--bs-primary);
+        }
+        
+        /* Navbar com transição suave */
+        .navbar {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(45, 55, 72, 0.85), rgba(45, 55, 72, 0.9)), 
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1772&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 10rem 0;
+        }
+        
+        /* Seções */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            color: var(--bs-primary);
+            position: relative;
+            padding-bottom: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--bs-info);
+        }
+        
+        .section-title.text-center:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Cards de serviços */
+        .service-card {
+            transition: transform 0.3s ease;
+            height: 100%;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: rgba(49, 130, 206, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--bs-info);
+            font-size: 1.8rem;
+        }
+        
+        /* Cards de portfólio */
+        .portfolio-card {
+            height: 100%;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .portfolio-img {
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-card:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+        
+        .tech-tag {
+            display: inline-block;
+            background-color: rgba(49, 130, 206, 0.1);
+            color: var(--bs-info);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Accordion FAQ */
+        .accordion-button {
+            font-weight: 600;
+            color: var(--bs-primary);
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(49, 130, 206, 0.05);
+            color: var(--bs-info);
+        }
+        
+        /* Formulário */
+        .form-control:focus {
+            border-color: var(--bs-info);
+            box-shadow: 0 0 0 0.25rem rgba(49, 130, 206, 0.25);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--bs-primary);
+            color: white;
+        }
+        
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: white;
+        }
+        
+        /* Acessibilidade: foco visível */
+        a:focus, button:focus, input:focus, textarea:focus {
+            outline: 3px solid var(--bs-info);
+            outline-offset: 2px;
+        }
+        
+        /* Responsividade adicional */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 6rem 0;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .display-4 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .hero-section {
+                padding: 4rem 0;
+            }
+            
+            .display-4 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body id="home">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home" aria-label="Tecnas Solutions - Página inicial">
+                <span class="text-info">Tecnas</span> Solutions
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicos">Serviços</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfólio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#suporte">Suporte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">Tecnologia e Infraestrutura para Negócios</h1>
+                    <p class="lead mb-4">Oferecemos soluções de TI robustas e personalizadas para pequenas empresas até grandes indústrias. Transformamos desafios tecnológicos em vantagens competitivas.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#servicos" class="btn btn-info btn-lg px-4 py-3">
+                            Nossos Serviços <i class="ri-arrow-right-line ms-1"></i>
+                        </a>
+                        <a href="#contato" class="btn btn-outline-light btn-lg px-4 py-3">
+                            Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="text-center">
+                        <i class="ri-server-line display-1 text-info"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sobre -->
+    <section class="section bg-light" id="sobre">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 class="section-title">Sobre a Tecnas Solutions</h2>
+                    <p class="lead mb-4">Somos uma empresa jovem e ágil, focada em soluções robustas e personalizadas para o segmento industrial e corporativo.</p>
+                    <p>Desde nossa fundação, temos nos especializado em oferecer infraestrutura de TI que realmente atende às necessidades dos negócios, com confiabilidade, segurança e escalabilidade.</p>
+                    <p>Nossa equipe é composta por profissionais certificados e com ampla experiência em virtualização, redes, suporte técnico e consultoria em TI.</p>
+                    <div class="mt-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="ri-checkbox-circle-fill text-success me-2"></i>
+                            <span>Foco em resultados e satisfação do cliente</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="ri-checkbox-circle-fill text-success me-2"></i>
+                            <span>Suporte técnico especializado 24/7</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="ri-checkbox-circle-fill text-success me-2"></i>
+                            <span>Soluções personalizadas para cada negócio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Equipe de TI da Tecnas Solutions em reunião de planejamento" 
+                         class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section class="section" id="servicos">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Serviços Oferecidos</h2>
+            <p class="text-center text-secondary mb-5 lead">Oferecemos soluções completas em TI para garantir a continuidade, segurança e eficiência dos seus negócios.</p>
+            
+            <div class="row g-4">
+                <!-- Serviço 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card card p-4">
+                        <div class="service-icon">
+                            <i class="ri-cloud-line"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Virtualização de Máquinas</h3>
+                        <p class="text-secondary">Implementação de ambientes virtualizados com VMware e Hyper-V para redução de custos e maior eficiência operacional.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-1"><i class="ri-check-line text-info me-2"></i>Consolidação de servidores</li>
+                            <li class="mb-1"><i class="ri-check-line text-info me-2"></i>Migração para cloud</li>
+                            <li><i class="ri-check-line text-info me-2"></i>Otimização de recursos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Serviço 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card card p-4">
+                        <div class="service-icon">
+                            <i class="ri-router-line"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Infraestrutura de Redes</h3>
+                        <p class="text-secondary">Projeto, implementação e manutenção de redes corporativas seguras e de alta disponibilidade.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-1"><i class="ri-check-line text-info me-2"></i>Cabeamento estruturado</li>
+                            <li class="mb-1"><i class="ri-check-line text-info me-2"></i>Segurança de rede</li>
+                            <li><i class="ri-check-line text-info me-2"></i>Monitoramento 24/7</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Serviço 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card card p-4">
+                        <div class="service-icon">
+                            <i class="ri-customer-service-2-line"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Suporte Técnico Especializado</h3>
+                        <p class="text-secondary">Suporte técnico presencial e remoto para resolução ágil de problemas e manutenção preventiva.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-1"><i class="ri-check-line text-info me-2"></i>Help desk especializado</li>
+                            <li class="mb-1"><i class="ri-check-line text-info me-2"></i>Manutenção preventiva</li>
+                            <li><i class="ri-check-line text-info me-2"></i>Resposta rápida a incidentes</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Serviço 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card card p-4">
+                        <div class="service-icon">
+                            <i class="ri-line-chart-line"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Consultoria em TI</h3>
+                        <p class="text-secondary">Análise e planejamento estratégico de TI para alinhar tecnologia aos objetivos de negócio.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-1"><i class="ri-check-line text-info me-2"></i>Auditoria de infraestrutura</li>
+                            <li class="mb-1"><i class="ri-check-line text-info me-2"></i>Planejamento estratégico</li>
+                            <li><i class="ri-check-line text-info me-2"></i>Otimização de processos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Serviço 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card card p-4">
+                        <div class="service-icon">
+                            <i class="ri-hard-drive-2-line"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Backup e Recuperação de Desastres</h3>
+                        <p class="text-secondary">Soluções robustas de backup e disaster recovery para garantir a continuidade do negócio.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-1"><i class="ri-check-line text-info me-2"></i>Backup em nuvem</li>
+                            <li class="mb-1"><i class="ri-check-line text-info me-2"></i>Plano de recuperação</li>
+                            <li><i class="ri-check-line text-info me-2"></i>Testes regulares</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Serviço 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-card card p-4">
+                        <div class="service-icon">
+                            <i class="ri-shield-keyhole-line"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Segurança da Informação</h3>
+                        <p class="text-secondary">Proteção de dados e sistemas contra ameaças cibernéticas com soluções de segurança multicamadas.</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-1"><i class="ri-check-line text-info me-2"></i>Firewall e antivírus</li>
+                            <li class="mb-1"><i class="ri-check-line text-info me-2"></i>Monitoramento de segurança</li>
+                            <li><i class="ri-check-line text-info me-2"></i>Treinamento de conscientização</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfólio -->
+    <section class="section bg-light" id="portfolio">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Portfólio & Cases de Sucesso</h2>
+            <p class="text-center text-secondary mb-5 lead">Confira alguns dos projetos que desenvolvemos para nossos clientes.</p>
+            
+            <div class="row g-4 mb-5" id="portfolio-container">
+                <!-- Projeto 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-card card">
+                        <img src="https://images.unsplash.com/photo-1455165814004-1126a7199f9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top portfolio-img" 
+                             alt="Infraestrutura de data center moderno">
+                        <div class="card-body">
+                            <h3 class="h5 fw-bold mb-2">Virtualização Industrial</h3>
+                            <p class="text-secondary mb-3">Implementação completa de virtualização para uma indústria automotiva, reduzindo custos em 40%.</p>
+                            <div class="mb-3">
+                                <span class="tech-tag">VMware</span>
+                                <span class="tech-tag">Cisco</span>
+                                <span class="tech-tag">Storage Area Network</span>
+                            </div>
+                            <button class="btn btn-sm btn-outline-info toggle-details" data-project="1">Ver Detalhes</button>
+                            <div class="project-details mt-3" id="project-details-1" style="display: none;">
+                                <p class="small">Projeto realizado em 2022 para uma grande montadora. Migramos 50 servidores físicos para um ambiente virtualizado com alta disponibilidade e disaster recovery.</p>
+                                <p class="small mb-0"><strong>Resultado:</strong> Redução de 40% nos custos com hardware e energia, além de aumento de 99,9% na disponibilidade dos sistemas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projeto 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-card card">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top portfolio-img" 
+                             alt="Rede de computadores empresarial">
+                        <div class="card-body">
+                            <h3 class="h5 fw-bold mb-2">Infraestrutura de Rede Corporativa</h3>
+                            <p class="text-secondary mb-3">Redesenho completo da rede para uma empresa de logística com 15 filiais.</p>
+                            <div class="mb-3">
+                                <span class="tech-tag">Cisco</span>
+                                <span class="tech-tag">Fortinet</span>
+                                <span class="tech-tag">MPLS</span>
+                            </div>
+                            <button class="btn btn-sm btn-outline-info toggle-details" data-project="2">Ver Detalhes</button>
+                            <div class="project-details mt-3" id="project-details-2" style="display: none;">
+                                <p class="small">Projeto realizado em 2021 para uma empresa de logística com operação nacional. Implementamos uma rede MPLS conectando todas as filiais à matriz.</p>
+                                <p class="small mb-0"><strong>Resultado:</strong> Aumento de 300% na velocidade de transmissão de dados entre filiais e redução de 60% nos problemas de conectividade.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projeto 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-card card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top portfolio-img" 
+                             alt="Sistema de backup em nuvem">
+                        <div class="card-body">
+                            <h3 class="h5 fw-bold mb-2">Sistema de Backup em Nuvem</h3>
+                            <p class="text-secondary mb-3">Implementação de solução de backup híbrido para uma rede de hospitais.</p>
+                            <div class="mb-3">
+                                <span class="tech-tag">Veeam</span>
+                                <span class="tech-tag">Azure</span>
+                                <span class="tech-tag">AWS</span>
+                            </div>
+                            <button class="btn btn-sm btn-outline-info toggle-details" data-project="3">Ver Detalhes</button>
+                            <div class="project-details mt-3" id="project-details-3" style="display: none;">
+                                <p class="small">Projeto realizado em 2023 para uma rede hospitalar com 8 unidades. Implementamos solução de backup híbrido com retenção de dados por 7 anos para conformidade regulatória.</p>
+                                <p class="small mb-0"><strong>Resultado:</strong> Tempo de recuperação de dados reduzido de 72 horas para 4 horas, garantindo continuidade das operações críticas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projeto 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-card card">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top portfolio-img" 
+                             alt="Painel de monitoramento de TI">
+                        <div class="card-body">
+                            <h3 class="h5 fw-bold mb-2">Central de Monitoramento 24/7</h3>
+                            <p class="text-secondary mb-3">Implentação de NOC (Network Operations Center) para uma empresa de energia.</p>
+                            <div class="mb-3">
+                                <span class="tech-tag">Zabbix</span>
+                                <span class="tech-tag">PRTG</span>
+                                <span class="tech-tag">Grafana</span>
+                            </div>
+                            <button class="btn btn-sm btn-outline-info toggle-details" data-project="4">Ver Detalhes</button>
+                            <div class="project-details mt-3" id="project-details-4" style="display: none;">
+                                <p class="small">Projeto realizado em 2022 para uma empresa do setor energético. Implementamos uma central de monitoramento que acompanha 500+ dispositivos de rede em tempo real.</p>
+                                <p class="small mb-0"><strong>Resultado:</strong> Detecção proativa de 95% dos problemas antes que afetem os usuários finais, aumentando a satisfação do cliente interno.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projeto 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-card card">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top portfolio-img" 
+                             alt="Segurança de rede corporativa">
+                        <div class="card-body">
+                            <h3 class="h5 fw-bold mb-2">Projeto de Segurança de Rede</h3>
+                            <p class="text-secondary mb-3">Fortificação da infraestrutura de segurança para um banco regional.</p>
+                            <div class="mb-3">
+                                <span class="tech-tag">Palo Alto</span>
+                                <span class="tech-tag">SIEM</span>
+                                <span class="tech-tag">2-Factor Auth</span>
+                            </div>
+                            <button class="btn btn-sm btn-outline-info toggle-details" data-project="5">Ver Detalhes</button>
+                            <div class="project-details mt-3" id="project-details-5" style="display: none;">
+                                <p class="small">Projeto realizado em 2023 para um banco com mais de 50 agências. Implementamos firewalls de próxima geração, SIEM e autenticação de dois fatores para todos os acessos.</p>
+                                <p class="small mb-0"><strong>Resultado:</strong> Bloqueio de 100% dos ataques de ransomware e redução de 90% em tentativas de acesso não autorizado no primeiro trimestre.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projeto 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-card card">
+                        <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top portfolio-img" 
+                             alt="Migração para nuvem">
+                        <div class="card-body">
+                            <h3 class="h5 fw-bold mb-2">Migração para Azure</h3>
+                            <p class="text-secondary mb-3">Migração completa de infraestrutura on-premise para nuvem Microsoft Azure.</p>
+                            <div class="mb-3">
+                                <span class="tech-tag">Azure</span>
+                                <span class="tech-tag">Active Directory</span>
+                                <span class="tech-tag">SQL Server</span>
+                            </div>
+                            <button class="btn btn-sm btn-outline-info toggle-details" data-project="6">Ver Detalhes</button>
+                            <div class="project-details mt-3" id="project-details-6" style="display: none;">
+                                <p class="small">Projeto realizado em 2022 para uma empresa de e-commerce. Migramos toda a infraestrutura (servidores, banco de dados, AD) para a nuvem Azure com arquitetura de alta disponibilidade.</p>
+                                <p class="small mb-0"><strong>Resultado:</strong> Redução de 35% nos custos com infraestrutura e aumento na capacidade de escala para lidar com picos de vendas sazonais.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn btn-info px-4 py-2" id="toggle-all-details">
+                    <i class="ri-eye-line me-2"></i> Mostrar/Ocultar Todos os Detalhes
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Suporte -->
+    <section class="section" id="suporte">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Suporte Técnico</h2>
+            <p class="text-center text-secondary mb-5 lead">Estamos aqui para ajudar sua empresa com qualquer necessidade de TI. Confira nossas opções de suporte.</p>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h3 class="h4 mb-4">Perguntas Frequentes (FAQ)</h3>
+                    <div class="accordion" id="faqAccordion">
+                        <!-- FAQ Item 1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading1">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
+                                    Qual é o tempo médio de resposta para chamados de suporte?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse1" class="accordion-collapse collapse" aria-labelledby="faqHeading1" 
+                                 data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Para clientes com contrato de suporte premium, o tempo médio de resposta é de <strong>15 minutos</strong> para chamados críticos e <strong>1 hora</strong> para chamados de média prioridade. Para demais clientes, o tempo médio é de 2 horas.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                                    Vocês oferecem suporte 24 horas por dia, 7 dias por semana?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" 
+                                 data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Sim, oferecemos suporte 24/7 para clientes com contrato enterprise. Nossa equipe trabalha em turnos para garantir cobertura total, incluindo finais de semana e feriados.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                    Como funciona o processo de atendimento remoto?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" 
+                                 data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Utilizamos ferramentas seguras de acesso remoto, com criptografia de ponta a ponta. Após a abertura do chamado, enviamos um link seguro para que o técnico possa acessar o sistema remotamente, sempre com a autorização e supervisão do cliente.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 4 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                                    Vocês realizam manutenção preventiva nos equipamentos?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" 
+                                 data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Sim, a manutenção preventiva é parte essencial de nossos planos de suporte. Realizamos verificações mensais ou trimestrais (conforme o plano) em servidores, redes, backups e sistemas de segurança para identificar e resolver problemas antes que afetem as operações.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 5 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading5">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                                    É possível escalar um chamado para um especialista?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5" 
+                                 data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Sim, temos um processo de escalonamento claro. Caso o técnico de primeiro nível não consiga resolver o problema dentro do tempo estabelecido, o chamado é automaticamente escalado para um especialista sênior na área específica (redes, virtualização, segurança, etc.).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow p-4 h-100">
+                        <h3 class="h4 mb-4">Canais de Suporte</h3>
+                        <p class="mb-4">Entre em contato conosco através dos canais abaixo:</p>
+                        
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-info bg-opacity-10 p-3 rounded-circle me-3">
+                                    <i class="ri-phone-line text-info fs-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="h6 fw-bold mb-1">Telefone</h4>
+                                    <p class="mb-0">(11) 3456-7890</p>
+                                    <small class="text-secondary">Segunda a sexta, 8h às 18h</small>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-info bg-opacity-10 p-3 rounded-circle me-3">
+                                    <i class="ri-whatsapp-line text-info fs-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="h6 fw-bold mb-1">WhatsApp</h4>
+                                    <p class="mb-0">(11) 98765-4321</p>
+                                    <small class="text-secondary">Suporte rápido via mensagem</small>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-info bg-opacity-10 p-3 rounded-circle me-3">
+                                    <i class="ri-mail-line text-info fs-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="h6 fw-bold mb-1">E-mail</h4>
+                                    <p class="mb-0">suporte@tecnassolutions.com.br</p>
+                                    <small class="text-secondary">Resposta em até 2 horas úteis</small>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex align-items-center">
+                                <div class="bg-info bg-opacity-10 p-3 rounded-circle me-3">
+                                    <i class="ri-chat-3-line text-info fs-4"></i>
+                                </div>
+                                <div>
+                                    <h4 class="h6 fw-bold mb-1">Chat Online</h4>
+                                    <p class="mb-0">Disponível no site</p>
+                                    <small class="text-secondary">Das 8h às 20h</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <a href="#contato" class="btn btn-info w-100 py-3">
+                                <i class="ri-chat-3-line me-2"></i> Abrir Chamado de Suporte
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="section bg-light" id="contato">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Entre em Contato</h2>
+            <p class="text-center text-secondary mb-5 lead">Solicite um orçamento, tire dúvidas sobre nossos serviços ou abra um chamado de suporte.</p>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card border-0 shadow p-4 p-md-5">
+                        <form id="contactForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Nome Completo *</label>
+                                    <input type="text" class="form-control" id="name" required aria-required="true">
+                                    <div class="invalid-feedback">Por favor, informe seu nome.</div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="company" class="form-label">Empresa *</label>
+                                    <input type="text" class="form-control" id="company" required aria-required="true">
+                                    <div class="invalid-feedback">Por favor, informe o nome da sua empresa.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">E-mail *</label>
+                                    <input type="email" class="form-control" id="email" required aria-required="true">
+                                    <div class="invalid-feedback">Por favor, informe um e-mail válido.</div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Telefone *</label>
+                                    <input type="tel" class="form-control" id="phone" required aria-required="true">
+                                    <div class="invalid-feedback">Por favor, informe seu telefone.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="service" class="form-label">Serviço de Interesse *</label>
+                                <select class="form-select" id="service" required aria-required="true">
+                                    <option value="" selected disabled>Selecione um serviço</option>
+                                    <option value="virtualizacao">Virtualização de Máquinas</option>
+                                    <option value="redes">Infraestrutura de Redes</option>
+                                    <option value="suporte">Suporte Técnico Especializado</option>
+                                    <option value="consultoria">Consultoria em TI</option>
+                                    <option value="backup">Backup e Recuperação de Desastres</option>
+                                    <option value="seguranca">Segurança da Informação</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                                <div class="invalid-feedback">Por favor, selecione um serviço.</div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Mensagem *</label>
+                                <textarea class="form-control" id="message" rows="5" required aria-required="true"></textarea>
+                                <div class="invalid-feedback">Por favor, escreva sua mensagem.</div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-info btn-lg py-3">
+                                    <i class="ri-send-plane-line me-2"></i> Enviar Mensagem
+                                </button>
+                            </div>
+                            
+                            <div class="mt-3 text-center text-secondary">
+                                <small>* Campos obrigatórios</small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="h4 fw-bold mb-3">
+                        <span class="text-info">Tecnas</span> Solutions
+                    </h3>
+                    <p class="mb-4" style="color: rgba(255, 255, 255, 0.8);">
+                        Tecnologia e Infraestrutura para Negócios. Soluções em TI para pequenas empresas até grandes indústrias.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="footer-link" aria-label="LinkedIn">
+                            <i class="ri-linkedin-box-fill fs-4"></i>
+                        </a>
+                        <a href="#" class="footer-link" aria-label="Facebook">
+                            <i class="ri-facebook-box-fill fs-4"></i>
+                        </a>
+                        <a href="#" class="footer-link" aria-label="Instagram">
+                            <i class="ri-instagram-line fs-4"></i>
+                        </a>
+                        <a href="#" class="footer-link" aria-label="YouTube">
+                            <i class="ri-youtube-fill fs-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="h5 fw-bold mb-3">Links Rápidos</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home" class="footer-link">Home</a></li>
+                        <li class="mb-2"><a href="#sobre" class="footer-link">Sobre</a></li>
+                        <li class="mb-2"><a href="#servicos" class="footer-link">Serviços</a></li>
+                        <li class="mb-2"><a href="#portfolio" class="footer-link">Portfólio</a></li>
+                        <li class="mb-2"><a href="#suporte" class="footer-link">Suporte</a></li>
+                        <li><a href="#contato" class="footer-link">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h4 class="h5 fw-bold mb-3">Contato</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="ri-map-pin-line me-2 mt-1"></i>
+                            <span style="color: rgba(255, 255, 255, 0.8);">Av. Paulista, 1000 - São Paulo, SP</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-start">
+                            <i class="ri-phone-line me-2 mt-1"></i>
+                            <span style="color: rgba(255, 255, 255, 0.8);">(11) 3456-7890</span>
+                        </li>
+                        <li class="d-flex align-items-start">
+                            <i class="ri-mail-line me-2 mt-1"></i>
+                            <span style="color: rgba(255, 255, 255, 0.8);">contato@tecnassolutions.com.br</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-5" style="border-color: rgba(255, 255, 255, 0.1);">
+            
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0" style="color: rgba(255, 255, 255, 0.7);">
+                        &copy; <span id="currentYear"></span> Tecnas Solutions. Todos os direitos reservados.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0" style="color: rgba(255, 255, 255, 0.7);">
+                        Desenvolvido com <i class="ri-heart-fill text-danger"></i> para soluções empresariais
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript Vanilla -->
+    <script>
+        // Função para inicializar o site quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            // ======================
+            // NAVEGAÇÃO SUAVE
+            // ======================
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Fechar navbar em dispositivos móveis após clicar em um link
+                        const navbarCollapse = document.querySelector('.navbar-collapse');
+                        if (navbarCollapse.classList.contains('show')) {
+                            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                            bsCollapse.hide();
+                        }
+                        
+                        // Scroll suave para a seção
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // ======================
+            // NAVBAR SCROLL EFFECT
+            // ======================
+            const navbar = document.getElementById('mainNavbar');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // ======================
+            // FORMULÁRIO DE CONTATO
+            // ======================
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validação básica
+                let isValid = true;
+                const requiredFields = contactForm.querySelectorAll('[required]');
+                
+                requiredFields.forEach(field => {
+                    field.classList.remove('is-invalid');
+                    
+                    // Verificar se o campo está vazio
+                    if (!field.value.trim()) {
+                        field.classList.add('is-invalid');
+                        isValid = false;
+                    }
+                    
+                    // Validação específica para e-mail
+                    if (field.type === 'email' && field.value.trim()) {
+                        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailPattern.test(field.value.trim())) {
+                            field.classList.add('is-invalid');
+                            isValid = false;
+                        }
+                    }
+                });
+                
+                if (isValid) {
+                    // Simulação de envio de formulário
+                    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                    contactForm.reset();
+                    
+                    // Remover classes de validação
+                    requiredFields.forEach(field => {
+                        field.classList.remove('is-invalid');
+                    });
+                }
+            });
+            
+            // ======================
+            // PORTFÓLIO - TOGGLE DETALHES
+            // ======================
+            const toggleButtons = document.querySelectorAll('.toggle-details');
+            const toggleAllButton = document.getElementById('toggle-all-details');
+            
+            // Função para alternar visibilidade de detalhes de um projeto
+            function toggleProjectDetails(projectId) {
+                const detailsElement = document.getElementById(`project-details-${projectId}`);
+                const button = document.querySelector(`.toggle-details[data-project="${projectId}"]`);
+                
+                if (detailsElement.style.display === 'none' || detailsElement.style.display === '') {
+                    detailsElement.style.display = 'block';
+                    button.textContent = 'Ocultar Detalhes';
+                    button.classList.remove('btn-outline-info');
+                    button.classList.add('btn-info');
+                } else {
+                    detailsElement.style.display = 'none';
+                    button.textContent = 'Ver Detalhes';
+                    button.classList.remove('btn-info');
+                    button.classList.add('btn-outline-info');
+                }
+            }
+            
+            // Adicionar event listeners para os botões individuais
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const projectId = this.getAttribute('data-project');
+                    toggleProjectDetails(projectId);
+                });
+            });
+            
+            // Função para alternar todos os detalhes
+            function toggleAllDetails() {
+                const allDetailsHidden = Array.from(document.querySelectorAll('.project-details')).every(
+                    el => el.style.display === 'none' || el.style.display === ''
+                );
+                
+                toggleButtons.forEach(button => {
+                    const projectId = button.getAttribute('data-project');
+                    const detailsElement = document.getElementById(`project-details-${projectId}`);
+                    
+                    if (allDetailsHidden) {
+                        detailsElement.style.display = 'block';
+                        button.textContent = 'Ocultar Detalhes';
+                        button.classList.remove('btn-outline-info');
+                        button.classList.add('btn-info');
+                    } else {
+                        detailsElement.style.display = 'none';
+                        button.textContent = 'Ver Detalhes';
+                        button.classList.remove('btn-info');
+                        button.classList.add('btn-outline-info');
+                    }
+                });
+                
+                // Atualizar texto do botão "Todos"
+                toggleAllButton.innerHTML = allDetailsHidden ? 
+                    '<i class="ri-eye-off-line me-2"></i> Ocultar Todos os Detalhes' : 
+                    '<i class="ri-eye-line me-2"></i> Mostrar Todos os Detalhes';
+            }
+            
+            // Adicionar event listener para o botão "Todos"
+            toggleAllButton.addEventListener('click', toggleAllDetails);
+            
+            // ======================
+            // ATUALIZAR ANO NO FOOTER
+            // ======================
+            const currentYearElement = document.getElementById('currentYear');
+            currentYearElement.textContent = new Date().getFullYear();
+            
+            // ======================
+            // ACESSIBILIDADE - Navegação por teclado
+            // ======================
+            // Adicionar suporte a tecla Enter para links de navegação
+            navLinks.forEach(link => {
+                link.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+            
+            // Adicionar suporte a tecla Enter para botões do portfólio
+            toggleButtons.forEach(button => {
+                button.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+            
+            // Adicionar suporte a tecla Enter para botão "Todos"
+            toggleAllButton.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+            
+            // Adicionar suporte a tecla Enter para botão de enviar formulário
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
